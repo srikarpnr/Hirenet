@@ -74,6 +74,11 @@ async function seedAccounts() {
             const user = new User(data);
             await user.save();
             console.log(`✅ Seeded ${data.role}: ${data.email}`);
+        } else if (exists.role !== data.role) {
+            // Force fix role if user registered manually before seed script was added
+            exists.role = data.role;
+            await exists.save();
+            console.log(`✅ Fixed role for ${data.email} to ${data.role}`);
         }
     }
 }
