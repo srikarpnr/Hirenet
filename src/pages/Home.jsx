@@ -120,11 +120,13 @@ export default function Home() {
                                 <HiArrowRight className="w-4 h-4" />
                             </motion.button>
                         </Link>
-                        <motion.button whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}
-                            onClick={() => openAuth('register')}
-                            className="border-2 border-white/40 text-white font-semibold px-8 py-3.5 rounded-2xl hover:bg-white/10 backdrop-blur-sm transition-all flex items-center gap-2">
-                            <HiOfficeBuilding className="w-5 h-5" /> Post a Job
-                        </motion.button>
+                        {(!user || user.role !== 'user') && (
+                            <motion.button whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}
+                                onClick={() => user ? window.location.href = '/dashboard' : openAuth('register')}
+                                className="border-2 border-white/40 text-white font-semibold px-8 py-3.5 rounded-2xl hover:bg-white/10 backdrop-blur-sm transition-all flex items-center gap-2">
+                                <HiOfficeBuilding className="w-5 h-5" /> Post a Job
+                            </motion.button>
+                        )}
                     </motion.div>
 
                     <motion.p
@@ -222,62 +224,63 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* Employer CTA */}
-            <section className="py-20 bg-gradient-to-br from-primary-600 to-primary-800 dark:from-primary-700 dark:to-navy-800">
-                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid lg:grid-cols-2 gap-12 items-center">
-                        <motion.div
-                            initial={{ opacity: 0, x: -30 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                        >
-                            <div className="inline-flex items-center gap-2 bg-white/10 rounded-full px-4 py-2 mb-6 text-white/90 text-sm">
-                                <HiStar className="w-4 h-4 text-yellow-400" />
-                                Employer Plan
-                            </div>
-                            <h2 className="font-display font-black text-4xl md:text-5xl text-white mb-4 leading-tight">
-                                Looking for <span className="text-accent-300">top talent?</span>
-                            </h2>
-                            <p className="text-white/75 text-lg mb-8 leading-relaxed">
-                                Post your job opening and connect with thousands of qualified candidates.
-                                Our AI-powered matching gets you the right applicants, fast.
-                            </p>
-                            <div className="flex flex-wrap gap-4">
-                                <motion.button whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}
-                                    onClick={() => openAuth('register')}
-                                    className="bg-white text-primary-600 font-bold px-8 py-3.5 rounded-2xl shadow-xl hover:shadow-2xl transition-all flex items-center gap-2">
-                                    <HiOfficeBuilding className="w-5 h-5" />
-                                    Post a Job Free
-                                </motion.button>
-                                <button className="border-2 border-white/40 text-white font-semibold px-6 py-3.5 rounded-2xl hover:bg-white/10 transition-all">
-                                    View Pricing
-                                </button>
-                            </div>
-                        </motion.div>
+            {(!user || user.role !== 'user') && (
+                <section className="py-20 bg-gradient-to-br from-primary-600 to-primary-800 dark:from-primary-700 dark:to-navy-800">
+                    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="grid lg:grid-cols-2 gap-12 items-center">
+                            <motion.div
+                                initial={{ opacity: 0, x: -30 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                            >
+                                <div className="inline-flex items-center gap-2 bg-white/10 rounded-full px-4 py-2 mb-6 text-white/90 text-sm">
+                                    <HiStar className="w-4 h-4 text-yellow-400" />
+                                    Employer Plan
+                                </div>
+                                <h2 className="font-display font-black text-4xl md:text-5xl text-white mb-4 leading-tight">
+                                    Looking for <span className="text-accent-300">top talent?</span>
+                                </h2>
+                                <p className="text-white/75 text-lg mb-8 leading-relaxed">
+                                    Post your job opening and connect with thousands of qualified candidates.
+                                    Our AI-powered matching gets you the right applicants, fast.
+                                </p>
+                                <div className="flex flex-wrap gap-4">
+                                    <motion.button whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}
+                                        onClick={() => user ? window.location.href = '/dashboard' : openAuth('register')}
+                                        className="bg-white text-primary-600 font-bold px-8 py-3.5 rounded-2xl shadow-xl hover:shadow-2xl transition-all flex items-center gap-2">
+                                        <HiOfficeBuilding className="w-5 h-5" />
+                                        Post a Job Free
+                                    </motion.button>
+                                    <button className="border-2 border-white/40 text-white font-semibold px-6 py-3.5 rounded-2xl hover:bg-white/10 transition-all">
+                                        View Pricing
+                                    </button>
+                                </div>
+                            </motion.div>
 
-                        <motion.div
-                            initial={{ opacity: 0, x: 30 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            className="hidden lg:grid grid-cols-2 gap-4"
-                        >
-                            {[
-                                { icon: <HiUsers className="w-6 h-6" />, stat: '50K+', label: 'Active Job Seekers' },
-                                { icon: <HiBriefcase className="w-6 h-6" />, stat: '3 Days', label: 'Avg. Time to Hire' },
-                                { icon: <HiStar className="w-6 h-6" />, stat: '4.9/5', label: 'Employer Rating' },
-                                { icon: <HiLightningBolt className="w-6 h-6" />, stat: '10K+', label: 'Jobs Posted' },
-                            ].map((item, i) => (
-                                <motion.div key={i} whileHover={{ scale: 1.05 }}
-                                    className="bg-white/10 backdrop-blur-md rounded-2xl p-5 border border-white/20">
-                                    <div className="text-white/70 mb-2">{item.icon}</div>
-                                    <div className="font-display font-black text-2xl text-white">{item.stat}</div>
-                                    <div className="text-white/70 text-sm">{item.label}</div>
-                                </motion.div>
-                            ))}
-                        </motion.div>
+                            <motion.div
+                                initial={{ opacity: 0, x: 30 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                                className="hidden lg:grid grid-cols-2 gap-4"
+                            >
+                                {[
+                                    { icon: <HiUsers className="w-6 h-6" />, stat: '50K+', label: 'Active Job Seekers' },
+                                    { icon: <HiBriefcase className="w-6 h-6" />, stat: '3 Days', label: 'Avg. Time to Hire' },
+                                    { icon: <HiStar className="w-6 h-6" />, stat: '4.9/5', label: 'Employer Rating' },
+                                    { icon: <HiLightningBolt className="w-6 h-6" />, stat: '10K+', label: 'Jobs Posted' },
+                                ].map((item, i) => (
+                                    <motion.div key={i} whileHover={{ scale: 1.05 }}
+                                        className="bg-white/10 backdrop-blur-md rounded-2xl p-5 border border-white/20">
+                                        <div className="text-white/70 mb-2">{item.icon}</div>
+                                        <div className="font-display font-black text-2xl text-white">{item.stat}</div>
+                                        <div className="text-white/70 text-sm">{item.label}</div>
+                                    </motion.div>
+                                ))}
+                            </motion.div>
+                        </div>
                     </div>
-                </div>
-            </section>
-        </div>
+                </section>
+            )}
+        </div >
     );
 }
