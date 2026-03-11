@@ -33,6 +33,7 @@ router.get('/', async (req, res) => {
 
         res.json({ jobs, total, page: Number(page), totalPages: Math.ceil(total / Number(limit)) });
     } catch (err) {
+        console.error('Jobs GET Error:', err);
         res.status(500).json({ message: 'Server error', error: err.message });
     }
 });
@@ -44,6 +45,7 @@ router.get('/:id', async (req, res) => {
         if (!job || !job.isActive) return res.status(404).json({ message: 'Job not found' });
         res.json(job);
     } catch (err) {
+        console.error('Job GET ID Error:', err);
         res.status(500).json({ message: 'Server error', error: err.message });
     }
 });

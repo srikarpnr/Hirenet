@@ -70,6 +70,7 @@ router.post('/login', async (req, res) => {
             }
         });
     } catch (err) {
+        console.error('Auth Register Error:', err);
         res.status(500).json({ message: 'Server error', error: err.message });
     }
 });
