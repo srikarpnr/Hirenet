@@ -81,8 +81,8 @@ export default function AuthModal() {
                             {['login', 'register'].map(mode => (
                                 <button key={mode} onClick={() => { setAuthMode(mode); setErrors({}); }}
                                     className={`flex-1 py-2 px-4 rounded-lg text-sm font-semibold transition-all duration-200 capitalize ${authMode === mode
-                                            ? 'bg-white dark:bg-navy-600 text-primary-600 shadow-sm'
-                                            : 'text-slate-500 dark:text-slate-400'
+                                        ? 'bg-white dark:bg-navy-600 text-primary-600 shadow-sm'
+                                        : 'text-slate-500 dark:text-slate-400'
                                         }`}>
                                     {mode === 'login' ? 'Sign In' : 'Sign Up'}
                                 </button>
@@ -98,14 +98,7 @@ export default function AuthModal() {
                                 : 'Join HireNet as a job seeker today'}
                         </p>
 
-                        {/* Predefined accounts hint for login */}
-                        {authMode === 'login' && (
-                            <div className="bg-primary-50 dark:bg-primary-900/20 border border-primary-100 dark:border-primary-800 rounded-xl p-3 mb-4 text-xs space-y-1">
-                                <p className="font-semibold text-primary-700 dark:text-primary-300">Pre-configured accounts:</p>
-                                <p className="text-primary-600 dark:text-primary-400">⚙️ Admin: <span className="font-mono">admin@hirenet.com</span> / <span className="font-mono">Admin@123</span></p>
-                                <p className="text-primary-600 dark:text-primary-400">🏢 Manager: <span className="font-mono">manager@hirenet.com</span> / <span className="font-mono">Manager@123</span></p>
-                            </div>
-                        )}
+                        {/* Predefined accounts hint for login - REMOVED FOR SECURITY */}
 
                         <form onSubmit={handleSubmit} className="space-y-4">
                             {authMode === 'register' && (
