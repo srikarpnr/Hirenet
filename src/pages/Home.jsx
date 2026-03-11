@@ -13,7 +13,7 @@ const HERO_WORDS = ['Better.', 'Smarter.', 'Faster.'];
 
 export default function Home() {
     const { jobs } = useJobs();
-    const { openAuth } = useAuth();
+    const { user, openAuth } = useAuth();
     const [loading, setLoading] = useState(true);
     const [wordIndex, setWordIndex] = useState(0);
 
