@@ -7,28 +7,17 @@ dotenv.config();
 
 const app = express();
 
-// CORS — allow both local dev and deployed frontend
-const allowedOrigins = [
-    'http://localhost:5173',
-    'http://localhost:3000',
-    // Add your Vercel frontend URL here after deployment:
-    process.env.FRONTEND_URL,
-].filter(Boolean);
-
+// CORS — allow all origins for easy deployment
 app.use(cors({
-    origin: function (origin, callback) {
-        // Allow requests with no origin (mobile apps, curl, Postman)
-        if (!origin) return callback(null, true);
-        if (allowedOrigins.some(o => origin.startsWith(o)) || origin.includes('.vercel.app')) {
-            return callback(null, true);
-        }
-        callback(new Error('Not allowed by CORS'));
-    },
+    origin: true,
     credentials: true,
 }));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Root route so it doesn't say "Route not found" on the main page
+app.get('/', (req, res) => res.json({ message: 'HireNet API is running! 🚀 Use /api endpoints.' }));
 
 // MongoDB connection (cached for serverless warm reuse)
 let isConnected = false;
