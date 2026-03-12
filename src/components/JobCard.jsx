@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { HiBookmark, HiLocationMarker, HiClock, HiCurrencyDollar, HiBriefcase, HiCheckCircle } from 'react-icons/hi';
+import { HiBookmark, HiLocationMarker, HiClock, HiBriefcase, HiCheckCircle } from 'react-icons/hi';
 import { useAuth } from '../context/AuthContext';
 import { useJobs } from '../context/JobsContext';
 import ApplyModal from './ApplyModal';
@@ -79,7 +79,7 @@ export default function JobCard({ job, index = 0 }) {
 
                     <div className="flex flex-wrap gap-x-4 gap-y-1.5 mb-4 text-xs text-slate-500 dark:text-slate-400">
                         <span className="flex items-center gap-1"><HiLocationMarker className="w-3.5 h-3.5 text-slate-400" />{job.location}</span>
-                        {job.salary && <span className="flex items-center gap-1 text-accent-600 dark:text-accent-400 font-medium">₹ {job.salary}</span>}
+                        {job.salary && <span className="flex items-center gap-1 text-accent-600 dark:text-accent-400 font-medium">{job.salary}</span>}
                         {postedAt && <span className="flex items-center gap-1"><HiClock className="w-3.5 h-3.5" />{postedAt}</span>}
                     </div>
 

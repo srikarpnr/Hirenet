@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { HiArrowLeft, HiLocationMarker, HiCurrencyDollar, HiBookmark, HiShare, HiClock, HiBriefcase, HiCheckCircle } from 'react-icons/hi';
+import { HiArrowLeft, HiLocationMarker, HiCurrencyRupee, HiBookmark, HiShare, HiClock, HiBriefcase, HiCheckCircle } from 'react-icons/hi';
 import { useJobs } from '../context/JobsContext';
 import { useAuth } from '../context/AuthContext';
 import JobCard from '../components/JobCard';
@@ -114,7 +114,7 @@ export default function JobDetails() {
                             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
                                 {[
                                     { icon: <HiLocationMarker />, label: 'Location', value: job.location },
-                                    { icon: <HiCurrencyDollar />, label: 'Salary', value: job.salary },
+                                    { icon: <HiCurrencyRupee />, label: 'Salary', value: job.salary },
                                     { icon: <HiBriefcase />, label: 'Experience', value: job.experience },
                                     { icon: <HiClock />, label: 'Posted', value: job.postedAt },
                                 ].map((item, i) => (

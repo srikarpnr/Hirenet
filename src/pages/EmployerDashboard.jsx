@@ -246,7 +246,7 @@ export default function ManagerDashboard() {
                                                         <img src={job.companyLogo} alt="" className="w-9 h-9 rounded-lg" />
                                                         <div className="flex-1 min-w-0">
                                                             <p className="font-medium text-navy-800 dark:text-white text-sm truncate">{job.title}</p>
-                                                            <p className="text-xs text-slate-500 dark:text-slate-400">{job.applicationCount || 0} applicants · {job.salary && <span>₹{job.salary.replace(/\$/g, '').replace(/K/g, 'K')}</span>}</p>
+                                                            <p className="text-xs text-slate-500 dark:text-slate-400">{job.applicationCount || 0} applicants · {job.salary && <span>{job.salary}</span>}</p>
                                                         </div>
                                                         <span className="badge-primary text-xs">{job.type}</span>
                                                     </div>
@@ -410,7 +410,7 @@ export default function ManagerDashboard() {
                                                             </td>
                                                             <td className="px-4 py-3"><span className="badge-primary text-xs">{job.type}</span></td>
                                                             <td className="px-4 py-3 text-slate-600 dark:text-slate-300 whitespace-nowrap">{job.location}</td>
-                                                            <td className="px-4 py-3 text-slate-600 dark:text-slate-300 whitespace-nowrap">{job.salary ? `₹ ${job.salary}` : '—'}</td>
+                                                            <td className="px-4 py-3 text-slate-600 dark:text-slate-300 whitespace-nowrap">{job.salary ? job.salary : '—'}</td>
                                                             <td className="px-4 py-3">
                                                                 <button onClick={() => { setSelectedJobId(job._id); loadApplicants(job._id); setActiveTab('applicants'); }}
                                                                     className="text-primary-600 dark:text-primary-400 font-semibold hover:underline">
